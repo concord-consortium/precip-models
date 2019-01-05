@@ -201,6 +201,7 @@ to execute-rules
   let critical-temp-delta ifelse-value (temperature-unit = "Fahrenheit") [5][2.5] ;technically the Celsius critical temp for 5 F is 2.77, but we use 2.5 b/c the slider moves in 0.5 increments
   let NW-square-offset x-grid-count - 1      ;the northwest square will alway be the row above and one to the left
   let cnt length test-square-list
+  setup
   let i 0
   while [i < cnt]
   [
@@ -478,7 +479,7 @@ air-moisture-is-at-least
 air-moisture-is-at-least
 0
 10
-5.0
+6.0
 1
 1
 NIL
@@ -503,7 +504,7 @@ light-rain-if-air-moisture-is
 light-rain-if-air-moisture-is
 0
 10
-5.0
+9.0
 1
 1
 NIL
@@ -518,7 +519,7 @@ moderate-rain-if-air-moisture-is
 moderate-rain-if-air-moisture-is
 0
 10
-8.0
+7.0
 1
 1
 NIL
@@ -533,7 +534,7 @@ heavy-rain-if-air-moisture-is
 heavy-rain-if-air-moisture-is
 0
 10
-9.0
+6.0
 1
 1
 NIL

@@ -201,6 +201,7 @@ to execute-rules
   let critical-temp-delta ifelse-value (temperature-unit = "Fahrenheit") [5][2.5] ;technically the Celsius critical temp for 5 F is 2.77, but we use 2.5 b/c the slider moves in 0.5 increments
   let NW-square-offset x-grid-count - 1      ;the northwest square will alway be the row above and one to the left
   let cnt length test-square-list
+  setup
   let i 0
   while [i < cnt]
   [
