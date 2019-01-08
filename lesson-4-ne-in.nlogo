@@ -647,9 +647,9 @@ to-report on-border?
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
-580
+370
 80
-1004
+794
 505
 -1
 -1
@@ -753,9 +753,9 @@ NIL
 1
 
 SLIDER
-580
+370
 10
-1005
+795
 43
 N-incoming-temp
 N-incoming-temp
@@ -768,9 +768,9 @@ N-incoming-temp
 HORIZONTAL
 
 SLIDER
-580
+370
 45
-1005
+795
 78
 N-incoming-moisture
 N-incoming-moisture
@@ -783,9 +783,9 @@ NIL
 HORIZONTAL
 
 SLIDER
-510
+300
 80
-543
+333
 505
 W-incoming-temp
 W-incoming-temp
@@ -798,9 +798,9 @@ W-incoming-temp
 VERTICAL
 
 SLIDER
-545
+335
 80
-578
+368
 505
 W-incoming-moisture
 W-incoming-moisture
@@ -813,9 +813,9 @@ NIL
 VERTICAL
 
 SLIDER
-580
+370
 505
-1005
+795
 538
 S-incoming-temp
 S-incoming-temp
@@ -828,9 +828,9 @@ S-incoming-temp
 HORIZONTAL
 
 SLIDER
-580
+370
 540
-1005
+795
 573
 S-incoming-moisture
 S-incoming-moisture
@@ -843,9 +843,9 @@ NIL
 HORIZONTAL
 
 SLIDER
-1005
+795
 80
-1038
+828
 505
 E-incoming-temp
 E-incoming-temp
@@ -858,9 +858,9 @@ E-incoming-temp
 VERTICAL
 
 SLIDER
-1040
+830
 80
-1073
+863
 505
 E-incoming-moisture
 E-incoming-moisture
