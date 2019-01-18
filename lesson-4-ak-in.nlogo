@@ -707,7 +707,7 @@ SWITCH
 295
 trails?
 trails?
-1
+0
 1
 -1000
 
@@ -872,7 +872,7 @@ CHOOSER
 212
 interpolation-method
 interpolation-method
-"nearest-neighbor" "inverse-distance"
+"nearest-neighbor" "weighted-average"
 1
 
 MONITOR

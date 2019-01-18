@@ -879,7 +879,7 @@ CHOOSER
 212
 interpolation-method
 interpolation-method
-"nearest-neighbor" "inverse-distance"
+"nearest-neighbor" "weighted-average"
 1
 
 MONITOR
