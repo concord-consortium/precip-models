@@ -1,0 +1,10 @@
+https://models-resources.concord.org/precip-models//output/lesson-4-ak-v2.html
+https://models-resources.concord.org/precip-models//output/lesson-4-ak.html
+https://models-resources.concord.org/precip-models//output/lesson-4-ne-v2.html
+https://models-resources.concord.org/precip-models//output/lesson-4-ne.html
+https://models-resources.concord.org/precip-models//output/lesson-5-ak.html
+https://models-resources.concord.org/precip-models//output/lesson-5-ne.html
+https://models-resources.concord.org/precip-models//output/precip-rule-ak-v2.html
+https://models-resources.concord.org/precip-models//output/precip-rule-ak.html
+https://models-resources.concord.org/precip-models//output/precip-rule-ne-v2.html
+https://models-resources.concord.org/precip-models//output/precip-rule-ne.html
