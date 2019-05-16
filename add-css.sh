@@ -8,5 +8,6 @@ for f in output/*.html
 do
 	echo "Adding CSS to file named: $f"
   cat ./extra-css.html >> $f
-  echo "${URL_BASE}/${f}" >> ./index.txt
+  b=$(basename "${f}")
+  echo "${URL_BASE}${b}" >> ./index.txt
 done
