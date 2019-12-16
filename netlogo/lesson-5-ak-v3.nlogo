@@ -42,6 +42,7 @@ globals [
   visible-stations
 
   mouse-was-down? ; for station selection
+  reveal?         ; for revealing the final measurement, controlled by button on screen
 ]
 
 stations-own [
@@ -82,10 +83,12 @@ to startup
   set W-incoming-moisture 3
   set E-incoming-moisture 3
   set S-incoming-moisture 3
-  set data-times-list ["date-time"	"Aug 21, 7am"	"Aug 21, 9am"	"Aug 21, 11am"	"Aug 21, 1pm"	"Aug 21, 3pm"	"Aug 21, 5pm"	"Aug 21, 7pm"	"Aug 21, 9pm"	"Aug 21, 11pm"	"Aug 22, 1am"	"Aug 22, 3am"	"Aug 22, 5am"	"Aug 22, 7am"]
-  set city-wind-data timed-wind-data
+  set data-times-list["date-time"	"April 21, 7am"	"April 21, 9am"	"April 21, 11am"	"April 21, 1pm"	"April 21, 3pm"	"April 21, 5pm"	"April 21, 7pm"	"April 21, 9pm"	"April 21, 11pm"	"April 22, 1am"	"April 22, 3am"	"April 22, 5am"	"April 22, 7am"]
   ;read-timed-wind-data   ;this is only used when importing a new data file
-  set time-of-measurement "Aug 21, 7am"
+  set city-wind-data timed-wind-data
+
+  set time-of-measurement "April 21, 7am"
+  set reveal? false
   setup
 end
 
@@ -93,6 +96,7 @@ to setup
   clear-drawing
   clear-turtles
   clear-patches
+
   set interpolation-method "weighted-average"  ;this setting and the next one are meant to trip the update function
   set last-interpolation-method ""
   update-interp
@@ -117,7 +121,7 @@ to setup
   reset-drawing
   update-interp
   update-time-of-measurement
-
+  set reveal? false
   reset-ticks
 end
 
@@ -218,7 +222,14 @@ end
 ;end
 
 to-report time-index
+  if reveal? [ report 14 ]
   report position time-of-measurement data-times-list
+end
+
+to advance-time [ forward-or-backward ] ;parameter must be either true or false; true for forward
+  ifelse forward-or-backward
+    [if hours-since-first-measurement < 24 [set hours-since-first-measurement hours-since-first-measurement + 2]]
+    [if hours-since-first-measurement > 0 [set hours-since-first-measurement hours-since-first-measurement - 2]]
 end
 
 to edit-stations
@@ -476,7 +487,9 @@ to update-time-of-measurement
   ]
 end
 
+to reveal-final-measurement
 
+end
 
 to update-patch-interp
   ask patches [
@@ -738,16 +751,16 @@ end
 
 to-report timed-wind-data
   report [
-    ["Utqiagvik"	193	235	313	296	329	322	313	316	330	345	355	330	330]
-    ["Fairbanks"	114	122	133	145	180	200	195	200	188	198	212	203	246]
-    ["Noorvik"	188	190	228	270	300	305	315	310	310	315	315	320	320]
-    ["Nome"	203	203	231	286	305	312	318	323	321	320	316	324	325]
-    ["Bethel"	160	165	170	197	177	167	170	168	180	190	178	200	213]
-    ["Point Lay"	315	310	310	315	315	320	320	320	320	320	320	320	300]
-    ["Bettles"	147	164	175	173	200	188	193	240	251	278	289	285	279]
-    ["Galena"	170	197	177	167	170	168	180	210	245	240	242	240	243]
-    ["St. Mary's"	170	197	196	167	170	168	180	190	178	200	180	190	221]
-    ["Cape Newenham"	215	215	217	205	190	185	179	164	190	200	200	179	190]
+    ["Utqiagvik"	193	235	313	296	329	322	313	316	330	345	355	330	330 330]
+    ["Fairbanks"	114	122	133	145	180	200	195	200	188	198	212	203	246 283]
+    ["Noorvik"	188	190	228	270	300	305	315	310	310	315	315	320	320 345 320]
+    ["Nome"	203	203	231	286	305	312	318	323	321	320	316	324	325 209 288]
+    ["Bethel"	160	165	170	197	177	167	170	168	180	190	178	200	213 245]
+    ["Point Lay"	315	310	310	315	315	320	320	320	320	320	320	320	300 300]
+    ["Bettles"	147	164	175	173	200	188	193	240	251	278	289	285	279 285]
+    ["Galena"	170	197	177	167	170	168	180	210	245	240	242	240	243 267 304]
+    ["St. Mary's"	170	197	196	167	170	168	180	190	178	200	180	190	221 263]
+    ["Cape Newenham"	215	215	217	205	190	185	179	164	190	200	200	179	190 236]
   ]
 end
 
@@ -900,7 +913,7 @@ SWITCH
 156
 trails?
 trails?
-1
+0
 1
 -1000
 
@@ -951,7 +964,7 @@ CHOOSER
 231
 time-of-measurement
 time-of-measurement
-"Aug 21, 7am" "Aug 21, 9am" "Aug 21, 11am" "Aug 21, 1pm" "Aug 21, 3pm" "Aug 21, 5pm" "Aug 21, 7pm" "Aug 21, 9pm" "Aug 21, 11pm" "Aug 22, 1am" "Aug 22, 3am" "Aug 22, 5am" "Aug 22, 7am"
+"April 21, 7am" "April 21, 9am" "April 21, 11am" "April 21, 1pm" "April 21, 3pm" "April 21, 5pm" "April 21, 7pm" "April 21, 9pm" "April 21, 11pm" "April 22, 1am" "April 22, 3am" "April 22, 5am" "April 22, 7am"
 0
 
 SLIDER
@@ -979,6 +992,57 @@ wind-visible?
 0
 1
 -1000
+
+BUTTON
+117
+301
+180
+334
+-->
+advance-time true
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
+
+BUTTON
+51
+301
+114
+334
+<--
+advance-time false
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
+
+BUTTON
+47
+429
+193
+462
+Reveal April 23, 7am
+set reveal? true\nsetup
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
 
 @#$#@#$#@
 Map generated with https://maps.googleapis.com/maps/api/staticmap?center=42,-91.5&zoom=6&format=png&sensor=false&size=416x416&maptype=roadmap&style=feature:road|visibility:off

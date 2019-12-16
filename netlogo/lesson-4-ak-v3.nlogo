@@ -123,7 +123,17 @@ end
 
 to reset-drawing
   cd
-  import-drawing "./ak-base-map-with-rose.png"
+  ifelse is-NE?
+  [
+    ifelse netlogo-web?
+      [ import-drawing "https://precipitatingchange-resources.concord.org/images/ne-base-map-with-rose.png"] ;;this to be updated with URL for NetLogoWeb version
+      [ import-drawing "ne-base-map-with-rose.png" ]
+  ]
+  [ ;; else it's AK...
+    ifelse netlogo-web?
+      [ import-drawing "https://precipitatingchange-resources.concord.org/images/ak-base-map-with-rose.png"]
+      [ import-drawing "ak-base-map-with-rose.png" ]
+  ]
 end
 
 to setup-stations-from-data [ data ]
